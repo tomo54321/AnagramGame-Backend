@@ -79,7 +79,6 @@ class Room {
         socket.leave(this.id);
         socket.data.currentRoom === undefined;
 
-        // TODO: HANDLE THE DELETE OF THE ROOM IF THIS WAS THE LAST PLAYER
     }
 
     onRoomDelete(){
@@ -212,7 +211,7 @@ class Room {
      */
     onUserBeginGame(socket){
         // User is admin so can start game?
-        if(this.adminId === socket.id && this.state === RoomState.IN_LOBBY){
+        if(this.adminId === socket.id && this.state === RoomState.IN_LOBBY && this.players.length > 1){
             this.onStartPreGameCountdown();
         }
     }
